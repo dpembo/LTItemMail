@@ -23,7 +23,6 @@ import br.net.gmj.nobookie.LTItemMail.LTItemMail;
 import br.net.gmj.nobookie.LTItemMail.api.entity.LTPlayer;
 import br.net.gmj.nobookie.LTItemMail.item.MailboxItem;
 import br.net.gmj.nobookie.LTItemMail.module.MailboxModule.Action;
-import br.net.gmj.nobookie.LTItemMail.module.ext.LTUltimateAdvancementAPI;
 import br.net.gmj.nobookie.LTItemMail.util.BukkitUtil;
 
 public final class BungeeModule implements PluginMessageListener {
@@ -75,9 +74,6 @@ public final class BungeeModule implements PluginMessageListener {
 							break;
 						case TITLE:
 							bukkitReceiver.sendTitle(ChatColor.AQUA + "" + LanguageModule.get(LanguageModule.Type.MAILBOX_FROM) +  " " + ChatColor.GREEN, sender.getName() + " (#" + mailbox + ")", 20 * 1, 20 * 5, 20 * 1);
-							break;
-						case TOAST:
-							if(ExtensionModule.getInstance().isRegistered(ExtensionModule.EXT.ULTIMATEADVANCEMENTAPI)) ((LTUltimateAdvancementAPI) ExtensionModule.getInstance().get(ExtensionModule.EXT.ULTIMATEADVANCEMENTAPI)).show(receiver, LanguageModule.get(LanguageModule.Type.MAILBOX_FROM) + " " + sender.getName() + " (#" + mailbox + ")");
 							break;
 					}
 				}

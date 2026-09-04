@@ -153,8 +153,10 @@ public final class LTItemMail extends JavaPlugin {
 		new MailboxVirtualListener();
 	}
 	private final void runTasks() {
-		if((Boolean) ConfigurationModule.get(ConfigurationModule.Type.PLUGIN_UPDATE_CHECK)) new UpdateTask();
-		new VersionControlTask();
+		if((Boolean) ConfigurationModule.get(ConfigurationModule.Type.PLUGIN_UPDATE_CHECK)) {
+			new UpdateTask();
+			new VersionControlTask();
+		}
 		if((Boolean) ConfigurationModule.get(ConfigurationModule.Type.RESOURCE_PACK_DOWNLOAD)) new BukkitRunnable() {
 			@Override
 			public final void run() {

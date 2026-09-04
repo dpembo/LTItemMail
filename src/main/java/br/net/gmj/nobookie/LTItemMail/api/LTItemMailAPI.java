@@ -34,7 +34,6 @@ import br.net.gmj.nobookie.LTItemMail.module.DatabaseModule;
 import br.net.gmj.nobookie.LTItemMail.module.ExtensionModule;
 import br.net.gmj.nobookie.LTItemMail.module.LanguageModule;
 import br.net.gmj.nobookie.LTItemMail.module.MailboxModule;
-import br.net.gmj.nobookie.LTItemMail.module.ext.LTUltimateAdvancementAPI;
 
 /**
  * 
@@ -92,21 +91,6 @@ public final class LTItemMailAPI {
 					break;
 				case TITLE:
 					bukkitPlayer.sendTitle(ChatColor.AQUA + "" + LanguageModule.get(LanguageModule.Type.MAILBOX_SPECIAL), "", 20 * 1, 20 * 5, 20 * 1);
-					break;
-				case TOAST:
-					if(ExtensionModule.getInstance().isRegistered(ExtensionModule.EXT.ULTIMATEADVANCEMENTAPI)) {
-						final LTUltimateAdvancementAPI ultimateAdvancementAPI = (LTUltimateAdvancementAPI) ExtensionModule.getInstance().get(ExtensionModule.EXT.ULTIMATEADVANCEMENTAPI);
-						ultimateAdvancementAPI.show(player, LanguageModule.get(LanguageModule.Type.MAILBOX_SPECIAL));
-						if(!label.isEmpty()) {
-							final String l = label;
-							new BukkitRunnable() {
-								@Override
-								public final void run() {
-									ultimateAdvancementAPI.show(player, l);
-								}
-							}.runTaskLater(LTItemMail.getInstance(), 20 * 3);
-						}
-					}
 					break;
 			}
 		} else if((Boolean) ConfigurationModule.get(ConfigurationModule.Type.BUNGEE_MODE)) {

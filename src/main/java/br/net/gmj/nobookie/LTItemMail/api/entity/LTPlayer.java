@@ -18,7 +18,6 @@ import br.net.gmj.nobookie.LTItemMail.module.ConsoleModule;
 import br.net.gmj.nobookie.LTItemMail.module.DatabaseModule;
 import br.net.gmj.nobookie.LTItemMail.module.ExtensionModule;
 import br.net.gmj.nobookie.LTItemMail.module.MailboxModule;
-import br.net.gmj.nobookie.LTItemMail.module.ext.LTUltimateAdvancementAPI;
 import br.net.gmj.nobookie.LTItemMail.util.BukkitUtil;
 import br.net.gmj.nobookie.LTItemMail.util.FetchUtil;
 import net.md_5.bungee.api.ChatMessageType;
@@ -233,11 +232,6 @@ public final class LTPlayer {
 	@Nonnull
 	public final Boolean sendToastMessage(@Nonnull final String message) throws NullPointerException {
 		Objects.requireNonNull(message);
-		if(ExtensionModule.getInstance().isRegistered(ExtensionModule.EXT.ULTIMATEADVANCEMENTAPI)) {
-			final LTUltimateAdvancementAPI ultimateAdvancementAPI = (LTUltimateAdvancementAPI) ExtensionModule.getInstance().get(ExtensionModule.EXT.ULTIMATEADVANCEMENTAPI);
-			ultimateAdvancementAPI.show(this, message);
-			return true;
-		}
 		return false;
 	}
 	/**

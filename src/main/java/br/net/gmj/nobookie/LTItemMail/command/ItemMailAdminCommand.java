@@ -86,8 +86,9 @@ public final class ItemMailAdminCommand extends LTCommandExecutor {
 						@Override
 						public final void run() {
 							final Integer localBuild = (Integer) ConfigurationModule.get(ConfigurationModule.Type.BUILD_NUMBER);
-							final String response = FetchUtil.URL.get(DataModule.UPDATE, null).replaceAll(System.lineSeparator(), "");
-							if(response != null) {
+							final String rawResponse = FetchUtil.URL.get(DataModule.UPDATE, null);
+							final String response = rawResponse == null ? null : rawResponse.replaceAll(System.lineSeparator(), "").trim();
+							if(response != null && response.matches("\\d+")) {
 								final Integer remoteBuild = Integer.parseInt(response);
 								if(remoteBuild > localBuild) {
 									final Integer outOfDate = remoteBuild - localBuild;

@@ -18,8 +18,6 @@ softdepend:
   - BlueMap
   - DecentHolograms
   - PlaceholderAPI
-  - CoinsEngine
-  - UltimateAdvancementAPI
   - TheNewEconomy
   - PlugMan
   - PlugManX

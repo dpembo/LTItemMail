@@ -70,9 +70,9 @@ hook:
   #Defina 'true' se desejar usar um plugin de economia (defina o preço do corrêio).
   economy:
     enable: false
-    #Compatible plugins: Vault for economies in general, CoinsEngine (ex: CoinsEngine:Coins) or The New Economy (ex: TheNewEconomy:USD). Default: Vault
+    #Compatible plugins: Vault for economies in general or The New Economy (ex: TheNewEconomy:USD). Default: Vault
     #
-    #Plugins compatíveis: Vault para economias em geral, CoinsEngine (ex: CoinsEngine:Moedas) ou The New Economy (ex: TheNewEconomy:USD). Padrão: Vault
+    #Plugins compatíveis: Vault para economias em geral ou The New Economy (ex: TheNewEconomy:USD). Padrão: Vault
     type: 'Vault'
   #Set 'true' if you wish to show mailbox blocks on the map.
   #
@@ -97,10 +97,6 @@ hook:
       enable: true
       cost: 15
   worldguard: true
-  #Useful for TOAST notifications (refer to "mail.display" below).
-  #
-  #Útil para notificações TOAST (consulte "mail.display" abaixo).
-  ultimateadvancementapi: true
   #You can replace mail buttons with custom heads from HeadDatabase.
   #
   #Você pode substituir botões do corrêio com cabeças customizadas do HeadDatabase.
@@ -148,8 +144,8 @@ autorun:
 #
 #Os administratores devem ser notificados sobre novas atualizações? Padrão: true
 update:
-  check: true
-  periodic-notification: true
-  automatic: true
+  check: false
+  periodic-notification: false
+  automatic: false
 boards:
   console-only: true

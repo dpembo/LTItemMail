@@ -1,6 +1,5 @@
 package br.net.gmj.nobookie.LTItemMail.module;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,10 +22,8 @@ import br.net.gmj.nobookie.LTItemMail.module.ext.LTPlugMan;
 import br.net.gmj.nobookie.LTItemMail.module.ext.LTRedProtect;
 import br.net.gmj.nobookie.LTItemMail.module.ext.LTSkulls;
 import br.net.gmj.nobookie.LTItemMail.module.ext.LTTownyAdvanced;
-import br.net.gmj.nobookie.LTItemMail.module.ext.LTUltimateAdvancementAPI;
 import br.net.gmj.nobookie.LTItemMail.module.ext.LTVault;
 import br.net.gmj.nobookie.LTItemMail.module.ext.LTWorldGuard;
-import br.net.gmj.nobookie.LTItemMail.util.FetchUtil;
 import net.milkbowl.vault.permission.Permission;
 
 public final class ExtensionModule {
@@ -67,9 +64,6 @@ public final class ExtensionModule {
 				break;
 			case PLACEHOLDERAPI:
 				REG.putIfAbsent(plugin, new LTPlaceholderAPI());
-				break;
-			case ULTIMATEADVANCEMENTAPI:
-				REG.putIfAbsent(plugin, new LTUltimateAdvancementAPI());
 				break;
 			case HEADDATABASE:
 				REG.putIfAbsent(plugin, new LTHeadDatabase());
@@ -138,25 +132,6 @@ public final class ExtensionModule {
 			warn(null, EXT.PLACEHOLDERAPI.plugin());
 			register(EXT.PLACEHOLDERAPI);
 		}
-		Boolean toastFallback = false;
-		if((Boolean) ConfigurationModule.get(ConfigurationModule.Type.PLUGIN_HOOK_ULTIMATEADVANCEMENTAPI)) {
-			if(isInstalled(EXT.ULTIMATEADVANCEMENTAPI.plugin())) {
-				if(!isRegistered(EXT.ULTIMATEADVANCEMENTAPI)) {
-					warn(null, EXT.ULTIMATEADVANCEMENTAPI.plugin());
-					register(EXT.ULTIMATEADVANCEMENTAPI);
-				}
-			} else toastFallback = true;
-		} else toastFallback = true;
-		if(toastFallback && ((String) ConfigurationModule.get(ConfigurationModule.Type.MAILBOX_DISPLAY)).equalsIgnoreCase("TOAST")) {
-			ConsoleModule.warning("You must install and enable UltimateAdvancementAPI in config.yml to use TOAST notifications. Falling back to CHAT notifications.");
-			LTItemMail.getInstance().configuration.set(ConfigurationModule.Type.MAILBOX_DISPLAY.path(), "CHAT");
-			try {
-				LTItemMail.getInstance().configuration.save(FetchUtil.FileManager.get("config.yml"));
-			} catch (final IOException e) {
-				ConsoleModule.severe("Error while saving config.yml.");
-				if((Boolean) ConfigurationModule.get(ConfigurationModule.Type.PLUGIN_DEBUG)) e.printStackTrace();
-			}
-		}
 		if((Boolean) ConfigurationModule.get(ConfigurationModule.Type.PLUGIN_HOOK_HEADDATABASE) && isInstalled(EXT.HEADDATABASE.plugin()) && !isRegistered(EXT.HEADDATABASE)) {
 			warn(null, EXT.HEADDATABASE.plugin());
 			register(EXT.HEADDATABASE);
@@ -193,7 +168,6 @@ public final class ExtensionModule {
 		BLUEMAP(Bukkit.getPluginManager().getPlugin("BlueMap")),
 		DECENTHOLOGRAMS(Bukkit.getPluginManager().getPlugin("DecentHolograms")),
 		PLACEHOLDERAPI(Bukkit.getPluginManager().getPlugin("PlaceholderAPI")),
-		ULTIMATEADVANCEMENTAPI(Bukkit.getPluginManager().getPlugin("UltimateAdvancementAPI")),
 		HEADDATABASE(Bukkit.getPluginManager().getPlugin("HeadDatabase")),
 		SKULLS(Bukkit.getPluginManager().getPlugin("Skulls")),
 		CITIZENS(Bukkit.getPluginManager().getPlugin("Citizens"));

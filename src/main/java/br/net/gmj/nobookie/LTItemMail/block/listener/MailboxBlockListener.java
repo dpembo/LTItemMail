@@ -228,7 +228,7 @@ public final class MailboxBlockListener implements Listener {
 		if(cancel) {
 			event.getBlock().getWorld().playSound(event.getBlock().getLocation(), Sound.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 1, 1);
 			for(final Block block : blocks) {
-				block.getLocation().getWorld().spawnParticle(Particle.EXPLOSION_HUGE, block.getLocation(), 1);
+				block.getLocation().getWorld().spawnParticle(Particle.EXPLOSION, block.getLocation(), 1);
 				block.breakNaturally();
 			}
 		}
@@ -257,7 +257,7 @@ public final class MailboxBlockListener implements Listener {
 		if(cancel) {
 			event.getLocation().getWorld().playSound(event.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 1, 1);
 			for(final Block block : blocks) {
-				block.getLocation().getWorld().spawnParticle(Particle.EXPLOSION_HUGE, block.getLocation(), 1);
+				block.getLocation().getWorld().spawnParticle(Particle.EXPLOSION, block.getLocation(), 1);
 				block.breakNaturally();
 			}
 		}

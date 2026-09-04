@@ -140,7 +140,6 @@ public final class ConfigurationModule {
 		PLUGIN_HOOK_TOWNYADVANCED_TAXES_ENABLE("hook.towny.taxes-per-mailbox.enable", true),
 		PLUGIN_HOOK_TOWNYADVANCED_TAXES_COST("hook.towny.taxes-per-mailbox.cost", 15),
 		PLUGIN_HOOK_WORLDGUARD("hook.worldguard", true),
-		PLUGIN_HOOK_ULTIMATEADVANCEMENTAPI("hook.ultimateadvancementapi", true),
 		PLUGIN_HOOK_HEADDATABASE("hook.headdatabase", true),
 		PLUGIN_HOOK_SKULLS("hook.skulls", true),
 		PLUGIN_HOOK_CITIZENS("hook.citizens", true),
