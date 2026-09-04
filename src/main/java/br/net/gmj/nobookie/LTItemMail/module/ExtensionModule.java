@@ -33,7 +33,7 @@ public final class ExtensionModule {
 	public final void warn(final Plugin source, final Plugin plugin) {
 		String sourceEXT = "";
 		if(source != null && source.isEnabled()) sourceEXT = " through " + source.getDescription().getName();
-		if(plugin != null && plugin.isEnabled()) plugin.getLogger().info("Hooked into " + LTItemMail.getInstance().getDescription().getName() + sourceEXT);
+		if(plugin != null && plugin.isEnabled()) ConsoleModule.info("Hooked into " + plugin.getDescription().getName() + sourceEXT);
 	}
 	private final boolean register(final EXT plugin) {
 		switch(plugin) {

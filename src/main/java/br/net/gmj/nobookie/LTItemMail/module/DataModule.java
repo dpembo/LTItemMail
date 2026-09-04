@@ -11,7 +11,6 @@ public final class DataModule {
 	public static final String ARTIFACT = JENKINS + "/job/" + LTItemMail.getInstance().getDescription().getName() + "/lastSuccessfulBuild/artifact/target/" + LTItemMail.getInstance().getDescription().getName() + ".jar";
 	public static final String RESOURCE_ARTIFACT = JENKINS + "/job/" + LTItemMail.getInstance().getDescription().getName() + "-ResourcePack/lastSuccessfulBuild/artifact/" + LTItemMail.getInstance().getDescription().getName() + "-ResourcePack.zip";
 	private static final String PLUGIN = "https://request.nobookie.net.br/" + LTItemMail.getInstance().getDescription().getName() + "/$version/manifest.yml";
-	public static final String STATS = "https://stats.nobookie.net.br";
 	public static final String DISCORD = "https://discord.gg/Nvnrv3P";
 	public static final Integer STABLE = 102;
 	public static final String getDateURL(final Integer build) {

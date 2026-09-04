@@ -33,7 +33,6 @@ import br.net.gmj.nobookie.LTItemMail.module.PermissionModule;
 import br.net.gmj.nobookie.LTItemMail.module.RegistrationModule;
 import br.net.gmj.nobookie.LTItemMail.task.UpdateTask;
 import br.net.gmj.nobookie.LTItemMail.task.VersionControlTask;
-import br.net.gmj.nobookie.LTItemMail.util.BStats;
 import br.net.gmj.nobookie.LTItemMail.util.FetchUtil;
 
 public final class LTItemMail extends JavaPlugin {
@@ -68,13 +67,6 @@ public final class LTItemMail extends JavaPlugin {
 			final File dev = new File(getDataFolder(), ".dev");
 			ConfigurationModule.devMode = (dev.exists() && dev.isFile());
 		}
-		final BStats metrics = new BStats(this, 3647);
-		metrics.addCustomChart(new BStats.SimplePie("builds", () -> {
-	        return String.valueOf((Integer) ConfigurationModule.get(ConfigurationModule.Type.BUILD_NUMBER));
-	    }));
-		metrics.addCustomChart(new BStats.SimplePie("language", () -> {
-	        return ((String) ConfigurationModule.get(ConfigurationModule.Type.PLUGIN_LANGUAGE)).toUpperCase();
-	    }));
 		loadLang();
 		if((Boolean) ConfigurationModule.get(ConfigurationModule.Type.BUNGEE_MODE)) {
 			Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
@@ -83,12 +75,6 @@ public final class LTItemMail extends JavaPlugin {
 		loadModels();
 		loadDatabase();
 		ExtensionModule.getInstance().load();
-		for(final ExtensionModule.EXT plugin : ExtensionModule.getInstance().REG.keySet()) metrics.addCustomChart(new BStats.SimplePie("extensions", () -> {
-	        return plugin.plugin().getDescription().getName();
-	    }));
-		if((Boolean) ConfigurationModule.get(ConfigurationModule.Type.PLUGIN_HOOK_ECONOMY_ENABLE)) if(EconomyModule.getInstance() != null && EconomyModule.getInstance().getEconomy() != null) metrics.addCustomChart(new BStats.SimplePie("economy", () -> {
-	        return EconomyModule.getInstance().getEconomy().plugin().getName();
-	    }));
 		PermissionModule.load();
 		registerListeners();
 		runTasks();
@@ -96,7 +82,6 @@ public final class LTItemMail extends JavaPlugin {
 		RegistrationModule.setupBlock();
 		new CommandModule();
 		MailboxModule.ready();
-		new FetchUtil.Stats();
 		final Long done = Calendar.getInstance().getTimeInMillis() - startup;
 		String took = done + "ms" + ChatColor.GREEN;
 		if(done >= 1000.0) took = (done / 1000.0) + "s" + ChatColor.GREEN;

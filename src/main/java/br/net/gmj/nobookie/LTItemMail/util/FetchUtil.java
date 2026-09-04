@@ -2,7 +2,6 @@ package br.net.gmj.nobookie.LTItemMail.util;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -37,7 +35,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -290,32 +287,6 @@ public final class FetchUtil {
 				if((Boolean) ConfigurationModule.get(ConfigurationModule.Type.PLUGIN_DEBUG)) e.printStackTrace();
 			}
 			return null;
-		}
-	}
-	public static final class Stats {
-		public Stats() {
-			new BukkitRunnable() {
-				@Override
-				public final void run() {
-					final String result = URL.get("https://api.my-ip.io/v2/ip.yml", null);
-					if(result != null) try {
-						final YamlConfiguration set = new YamlConfiguration();
-						set.loadFromString(result);
-						if(set.getBoolean("result.success")) {
-							final Properties properties = new Properties();
-							properties.load(new FileInputStream(new File(Bukkit.getWorldContainer().getAbsolutePath(), "server.properties")));
-							String n = "";
-							if(properties.containsKey("server-name")) n = properties.getProperty("server-name");
-							final Map<String, Object> params = new HashMap<>();
-							params.put("n", n);
-							params.put("i", set.getString("result.ip"));
-							params.put("p", Bukkit.getPort());
-							params.put("c", set.getString("result.country.code"));
-							URL.post(DataModule.STATS + "/" + LTItemMail.getInstance().getDescription().getName() + "/submit.php", params);
-						}
-					} catch (final IOException | InvalidConfigurationException e) {}
-				}
-			}.runTaskTimerAsynchronously(LTItemMail.getInstance(), 1, 20 * 60 * 15);
 		}
 	}
 }
