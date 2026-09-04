@@ -2,7 +2,7 @@ name: ${project.name}
 description: ${project.description}
 version: ${project.version}
 build: ${buildNumber}
-api-version: 1.17
+api-version: '26.2'
 load: POSTWORLD
 author: Nobookie
 website: ${project.url}
