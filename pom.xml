@@ -5,7 +5,7 @@
 	<version>1.0.0</version>
 	<name>LTItemMail</name>
 	<description>Have you ever imagined mailing items to your friends in Minecraft?</description>
-	<url>https://github.com/Nobookie/LTItemMail</url>
+	<url>https://github.com/dpembo/LTItemMail</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>

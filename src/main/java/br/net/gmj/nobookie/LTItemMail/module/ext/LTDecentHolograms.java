@@ -48,7 +48,7 @@ public final class LTDecentHolograms implements LTExtension {
 		final Integer x = location.getBlockX();
 		final Integer y = location.getBlockY() + 2;
 		final Integer z = location.getBlockZ();
-		final String id = player.getName() + "_" + world.getName() + "_" + x + "_" + y + "_" + z;
+		final String id = hologramId(player, world, x, y, z);
 		final Location holoLocation = new Location(world, x + 0.5, y + 0.5, z + 0.5);
 		if(DHAPI.getHologram(id) != null) deleteHolo(player, location);
 		final Hologram holo = DHAPI.createHologram(id, holoLocation, true);
@@ -58,14 +58,16 @@ public final class LTDecentHolograms implements LTExtension {
 		ConsoleModule.debug(getClass(), "#createHolo: " + id);
 	}
 	public final void deleteHolo(final OfflinePlayer player, final Location location) {
-		final String world = location.getWorld().getName();
 		final Integer x = location.getBlockX();
 		final Integer y = location.getBlockY() + 2;
 		final Integer z = location.getBlockZ();
-		final String id = player.getName() + "_" + world + "_" + x + "_" + y + "_" + z;
+		final String id = hologramId(player, location.getWorld(), x, y, z);
 		if(DHAPI.getHologram(id) != null) {
 			DHAPI.removeHologram(id);
 			ConsoleModule.debug(getClass(), "#deleteHolo: " + id);
 		}
+	}
+	private String hologramId(final OfflinePlayer player, final World world, final Integer x, final Integer y, final Integer z) {
+		return (player.getName() + "_" + world.getName() + "_" + x + "_" + y + "_" + z).replaceAll("[^A-Za-z0-9_-]", "_");
 	}
 }
